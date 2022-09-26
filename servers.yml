@@ -50,14 +50,19 @@ Resources:
     Type: AWS::AutoScaling::LaunchConfiguration
     Properties:
       UserData:
-        Fn::Base64: !Sub |
-          #!/bin/bash
-          sudo apt-get update -y
-          sudo apt-get install apache2 -y
-          cd /var/www/html
-          sudo rm index.html
-          sudo wget https://udagram-126731028893.s3.amazonaws.com/index.html
-          sudo systemctl start apache2.service       
+        Fn::Base64: 
+          !Sub
+          - |
+            #!/bin/bash -xe
+            sudo apt-get update -y
+            sudo apt-get install apache2 -y
+            cd /var/www/html
+            sudo rm index.html
+            sudo wget https://udagram-126731028893.s3.amazonaws.com/index.html
+            sudo systemctl start apache2.service
+          - BucketURL: 
+              Fn::ImportValue:
+                Fn::Sub: ${EnvironmentName}-BUCKET-URL       
       ImageId: !Ref ImageId
       KeyName: !Ref KeyName
       SecurityGroups:
@@ -123,3 +128,14 @@ Resources:
       VpcId: 
         Fn::ImportValue:
           Fn::Sub: "${EnvironmentName}-VPCID"
+Outputs:
+  WebAppLB:
+    Value: !Ref WebAppLB
+
+  LBPublicUrl:
+    Description: Load Balancer Public URL
+    Value: 
+      !Join 
+        - ''
+        - - 'http://'
+          - !GetAtt WebAppLB.DNSName
