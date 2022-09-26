@@ -12,7 +12,7 @@
 ## The steps to create all stacks:
 1. Run the following command to create the bucket:
 ```
-./scipts/create-bucket.sh
+./scripts/create-bucket.sh
 ```
 2. Wait until the status of the bucket stack to be CREATE_COMPLETE, then run:
 ```
@@ -20,9 +20,14 @@
 ```
 3. Run the following command to create the network stack:
 ```
-./scipts/create-network.sh
+./scripts/create-network.sh
 ```
 4. Wait for the network stack status to be CREATE_COMPLETE, then run:
 ```
-./scipts/create-servers.sh
+./scripts/create-servers.sh
+```
+5. When the servers stack creation is completed, check the its outputs and find the Load balancer url that starts with http.
+6. Finally, use the following command to delete all stacks:
+```
+./scripts/delete-all.sh
 ```
