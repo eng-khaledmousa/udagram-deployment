@@ -1,0 +1,18 @@
+[
+	{
+		"ParameterKey": "EnvironmentName",
+		"ParameterValue": "Udagram-Infrastructure"
+	},
+    {
+		"ParameterKey": "ImageId",
+		"ParameterValue": "ami-0ee23bfc74a881de5"
+	},
+    {
+		"ParameterKey": "InstanceType",
+		"ParameterValue": "t2.medium"
+	},
+    {
+		"ParameterKey": "KeyName",
+		"ParameterValue": "udagram"
+	}
+]

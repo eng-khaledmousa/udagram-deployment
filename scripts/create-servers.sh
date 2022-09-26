@@ -1,0 +1,1 @@
+sh ./scripts/create.sh udagram-servers servers.yml servers.json

@@ -1,0 +1,1 @@
+./scripts/create.sh udagram-bucket bucket.yml bucket.json

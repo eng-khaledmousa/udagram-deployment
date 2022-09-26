@@ -1,0 +1,1 @@
+sh ./scripts/create.sh udagram-network network.yml network.json

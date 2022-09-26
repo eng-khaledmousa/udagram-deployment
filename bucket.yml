@@ -1,0 +1,34 @@
+Parameters:
+  BucketName:
+    Type: String
+  EnvironmentName:
+    Type: String
+
+Resources:
+  S3Bucket:
+    Type: 'AWS::S3::Bucket'
+    Properties:
+      BucketName: !Ref BucketName
+  ReadPolicy:
+    Type: 'AWS::S3::BucketPolicy'
+    Properties:
+      Bucket: !Ref S3Bucket
+      PolicyDocument:
+        Statement:
+          - Action: 's3:GetObject'
+            Effect: Allow
+            Resource: !Sub 'arn:aws:s3:::${S3Bucket}/*'
+            Principal: '*'
+
+Outputs:
+  Bucket:
+    Description: 'Bucket Name'
+    Value: !Ref S3Bucket
+    Export:
+          Name: !Sub ${EnvironmentName}-BUCKET-ID
+          
+  BucketUrl:
+    Description: 'Bucket URL'
+    Value: !GetAtt 'S3Bucket.WebsiteURL'
+    Export:
+          Name: !Sub ${EnvironmentName}-BUCKET-URL
