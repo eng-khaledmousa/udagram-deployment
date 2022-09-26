@@ -1,9 +1,5 @@
 [
     {
-		"ParameterKey": "BucketName",
-		"ParameterValue": "udagram-126731028893"
-	},
-    {
 		"ParameterKey": "EnvironmentName",
 		"ParameterValue": "Udagram-Infrastructure"
 	}

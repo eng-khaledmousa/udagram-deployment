@@ -8,7 +8,7 @@ Resources:
   S3Bucket:
     Type: 'AWS::S3::Bucket'
     Properties:
-      BucketName: !Ref BucketName
+      BucketName: udagram-126731028893
   ReadPolicy:
     Type: 'AWS::S3::BucketPolicy'
     Properties:
