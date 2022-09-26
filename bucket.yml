@@ -1,6 +1,4 @@
 Parameters:
-  BucketName:
-    Type: String
   EnvironmentName:
     Type: String
 
