@@ -10,5 +10,13 @@
     {
 		"ParameterKey": "InstanceType",
 		"ParameterValue": "t2.medium"
+	},
+	{
+		"ParameterKey": "InstanceKeyName",
+		"ParameterValue": "private-instance-key"
+	},
+	{
+		"ParameterKey": "JBKeyName",
+		"ParameterValue": "jumb-box-key"
 	}
 ]

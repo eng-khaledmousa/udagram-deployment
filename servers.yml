@@ -5,6 +5,10 @@ Parameters:
         Type: String
     InstanceType:
         Type: String
+    InstanceKeyName:
+        Type: String
+    JBKeyName:
+        Type: String
 Resources:
   LBSecGroup:
     Type: AWS::EC2::SecurityGroup
@@ -62,6 +66,7 @@ Resources:
               Fn::ImportValue:
                 Fn::Sub: ${EnvironmentName}-BUCKET-URL       
       ImageId: !Ref ImageId
+      KeyName: !Ref InstanceKeyName
       SecurityGroups:
       - Ref: WebServerSecGroup
       InstanceType: !Ref InstanceType
@@ -125,10 +130,34 @@ Resources:
       VpcId: 
         Fn::ImportValue:
           Fn::Sub: "${EnvironmentName}-VPCID"
+  JBSecGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Allow http to our jump box and SSH from local only
+      VpcId:
+        Fn::ImportValue:
+          !Sub "${EnvironmentName}-VPCID"
+      SecurityGroupIngress:
+      - IpProtocol: tcp
+        FromPort: 22
+        ToPort: 22
+        CidrIp: 0.0.0.0/0
+  JumpBoxInstance:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: !Ref InstanceType
+      ImageId: !Ref ImageId
+      KeyName: !Ref JBKeyName
+      NetworkInterfaces: 
+        - AssociatePublicIpAddress: true
+          DeviceIndex: "0"
+          GroupSet: 
+            - Ref: JBSecGroup
+          SubnetId: 
+            Fn::ImportValue: !Sub "${EnvironmentName}-PUB1-SN"
 Outputs:
   WebAppLB:
     Value: !Ref WebAppLB
-
   LBPublicUrl:
     Description: Load Balancer Public URL
     Value: 
