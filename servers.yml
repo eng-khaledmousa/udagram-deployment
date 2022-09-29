@@ -5,8 +5,6 @@ Parameters:
         Type: String
     InstanceType:
         Type: String
-    KeyName:
-        Type: String
 Resources:
   LBSecGroup:
     Type: AWS::EC2::SecurityGroup
@@ -64,7 +62,6 @@ Resources:
               Fn::ImportValue:
                 Fn::Sub: ${EnvironmentName}-BUCKET-URL       
       ImageId: !Ref ImageId
-      KeyName: !Ref KeyName
       SecurityGroups:
       - Ref: WebServerSecGroup
       InstanceType: !Ref InstanceType

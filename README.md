@@ -1,6 +1,6 @@
 # Udagram Deployment
-## This is a cloud formation script for a highly available Instagram-like website.
-## The bucket contains the website files that will be loaded into the EC2 instances during the initialization.
+This is a cloud formation script for a highly available Instagram-like website.
+The bucket contains the website files that will be loaded into the EC2 instances during the initialization.
 ## The YAML script consists 3 files: 
 - network.yml >> the script of the network stack.
 - servers.yml >> the script of the EC2 instances, load balancer, and security groups.
